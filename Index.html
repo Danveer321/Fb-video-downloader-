@@ -1,0 +1,25 @@
+import youtube_dl
+import os
+
+def download_facebook_video(video_url):
+    # Options for youtube-dl
+    ydl_opts = {
+        'format': 'best',  # Download the best quality available
+        'outtmpl': '%(title)s.%(ext)s',  # Save the video with the title as the filename
+        'quiet': False,  # Show progress and logs
+    }
+
+    try:
+        # Download the video
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([video_url])
+        print("Video downloaded successfully!")
+    except Exception as e:
+        print(f"Failed to download video: {e}")
+
+if __name__ == "__main__":
+    # Input the Facebook video URL
+    video_url = input("Enter the Facebook video URL: ")
+
+    # Download the video
+    download_facebook_video(video_url)
